@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>Tag prediction</title>
+    </head>
+    <body>
+
+        <form name = "Tag Prediction" action="." method="POST">
+                 <h1>Insert text to see the prediction:</h1>
+                 <input name="text" value="{{ request.form['text'] }}"></input>
+                 <button type="submit">Predict</button>
+
+        </form>
+     </body>
+</html>

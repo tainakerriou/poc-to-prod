@@ -32,7 +32,8 @@ class TestBaseTextCategorizationDataset(unittest.TestCase):
 
     def test__get_num_test_batches(self):
         base = utils.BaseTextCategorizationDataset(20, 0.8)
-        self.assertEqual(base._get_num_test_batches(), 4)
+        base._get_num_test_samples = MagicMock(return_value=100)
+        self.assertEqual(base._get_num_test_batches(), 5)
 
 
     def test_get_index_to_label_map(self):
@@ -105,7 +106,7 @@ class TestLocalTextCategorizationDataset(unittest.TestCase):
         a, b = dataset.get_train_batch()
 
         self.assertEqual(a.shape, (2,))
-        self.assertEqual(b.shape, (2, 8))
+        self.assertEqual(b.shape, (2, 2))
 
 
     def test_get_test_batch_returns_expected_shape(self):
@@ -121,7 +122,7 @@ class TestLocalTextCategorizationDataset(unittest.TestCase):
         a, b = dataset.get_test_batch()
 
         self.assertEqual(a.shape, (2,))
-        self.assertEqual(b.shape, (2, 8))
+        self.assertEqual(b.shape, (2, 2))
 
     def test_get_train_batch_raises_assertion_error(self):
 
@@ -133,5 +134,5 @@ class TestLocalTextCategorizationDataset(unittest.TestCase):
             'title': ['title_1', 'title_2', 'title_3', 'title_4', 'title_5', 'title_6', 'title_7', 'title_8', 'title_9']
         }))
         dataset = utils.LocalTextCategorizationDataset("fake_path", 1, 0.8, 1)
-        a, b = dataset.get_test_batch()
+        a, b = dataset.get_train_batch()
         self.assertEqual(a.shape, (1,))

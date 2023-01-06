@@ -62,7 +62,7 @@ def train(dataset_path, train_conf, model_path, add_timestamp):
 
     # TODO: CODE HERE
     # create folder artefacts_path
-    os.chdir("/home/taina/Documents/POC_to_PROD/poc-to-prod-capstone/train/data/artefacts")
+
     os.makedirs(artefacts_path)
     #os.mkdir(artefacts_path)
 
